@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Global -->
+    <title>DigitalPulse | #1 Make Money Online, AI Tools & Passive Income Platform</title>
+    <meta name="description" content="Join 500,000+ entrepreneurs learning to make money online. Free guides on AI tools, side hustles, investing, freelancing. Earn by contributing!">
+    <meta name="keywords" content="make money online, passive income, side hustle, AI tools, ChatGPT, freelancing, dropshipping, affiliate marketing, investing, crypto, remote work, digital nomad, online business">
+    <meta name="author" content="DigitalPulse">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://digitalpulse.io/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitalpulse.io/">
+    <meta property="og:title" content="DigitalPulse - Make Money Online & Financial Freedom">
+    <meta property="og:description" content="Join 500K+ entrepreneurs. Free guides, earn by contributing!">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=630&fit=crop">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DigitalPulse - Make Money Online">
+    <meta name="twitter:description" content="Join 500K+ entrepreneurs learning passive income!">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .nav-blur { backdrop-filter: blur(20px); background: rgba(255,255,255,0.95); }
+        .modal-overlay { background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+        .admin-sidebar { width: 280px; }
+        .content-area { margin-left: 280px; }
+        @media (max-width: 1024px) { .admin-sidebar { display: none; } .content-area { margin-left: 0; } }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .editable:hover { outline: 2px dashed #667eea; cursor: pointer; }
+        .editable:focus { outline: 2px solid #667eea; background: #f0f0ff; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Admin Toggle Button (HIDDEN until logged in) -->
+    <button id="adminToggle" onclick="toggleAdminPanel()" class="fixed bottom-6 left-6 z-50 bg-purple-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:bg-purple-700 transition-all hidden">
+        <i class="fas fa-cog text-xl"></i>
+    </button>
+
+    <!-- Secret Admin Login Trigger - Triple click on logo -->
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="fixed inset-0 z-[100] hidden">
+        <div class="modal-overlay absolute inset-0" onclick="closeAdminLogin()"></div>
+        <div class="relative z-10 max-w-md mx-auto mt-20 px-4">
+            <div class="bg-white rounded-3xl shadow-2xl p-8">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold">Admin Login</h2>
+                    <p class="text-gray-500 text-sm mt-2">Founder access only</p>
+                </div>
+                
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Username</label>
+                        <input type="text" id="adminUsername" required 
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none"
+                            placeholder="Enter username">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" id="adminPassword" required 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none pr-12"
+                                placeholder="Enter password">
+                            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                <i id="passwordToggleIcon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="loginError" class="hidden bg-red-50 text-red-600 px-4 py-3 rounded-xl text-sm">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        <span>Invalid credentials. Please try again.</span>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-bold hover:opacity-90 transition">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login as Founder
+                    </button>
+                </form>
+                
+                <div class="mt-6 text-center">
+                    <button onclick="closeAdminLogin()" class="text-gray-500 hover:text-gray-700 text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Sidebar -->
+    <div id="adminPanel" class="fixed left-0 top-0 h-full admin-sidebar bg-gray-900 text-white z-50 transform -translate-x-full transition-transform duration-300 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span class="font-bold text-lg">Admin Panel</span>
+                </div>
+                <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Site Settings -->
+            <div class="mb-8">
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-4">Site Settings</h3>
+                <div class="space-y-3">
+                    <div>
+                        <label class="text-sm text-gray-400 block mb-1">Site Name</label>
+                        <input type="text" id="siteName" value="DigitalPulse" onchange="updateSiteName()" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:border-purple-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-400 block mb-1">Tagline</label>
+                        <input type="text" id="siteTagline" value="Make Money Online" onchange="updateTagline()" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:border-purple-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-400 block mb-1">Logo Icon</label>
+                        <select id="logoIcon" onchange="updateLogo()" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:border-purple-500 focus:outline-none">
+                            <option value="fa-bolt">⚡ Bolt</option>
+                            <option value="fa-rocket">🚀 Rocket</option>
+                            <option value="fa-fire">🔥 Fire</option>
+                            <option value="fa-star">⭐ Star</option>
+                            <option value="fa-gem">💎 Gem</option>
+                            <option value="fa-crown">👑 Crown</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme Settings -->
+            <div class="mb-8">
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-4">Theme</h3>
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="changeTheme('purple')" class="w-10 h-10 rounded-lg bg-purple-600 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('blue')" class="w-10 h-10 rounded-lg bg-blue-600 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('green')" class="w-10 h-10 rounded-lg bg-green-600 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('red')" class="w-10 h-10 rounded-lg bg-red-600 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('orange')" class="w-10 h-10 rounded-lg bg-orange-500 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('pink')" class="w-10 h-10 rounded-lg bg-pink-600 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('teal')" class="w-10 h-10 rounded-lg bg-teal-600 hover:scale-110 transition"></button>
+                    <button onclick="changeTheme('indigo')" class="w-10 h-10 rounded-lg bg-indigo-600 hover:scale-110 transition"></button>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="mb-8">
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-4">Quick Actions</h3>
+                <div class="space-y-2">
+                    <button onclick="navigateTo('home')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-home text-purple-400"></i>
+                        <span>Home</span>
+                    </button>
+                    <button onclick="navigateTo('articles')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-newspaper text-blue-400"></i>
+                        <span>All Articles</span>
+                    </button>
+                    <button onclick="navigateTo('add-article')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-plus text-green-400"></i>
+                        <span>Add New Article</span>
+                    </button>
+                    <button onclick="navigateTo('categories')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-folder text-yellow-400"></i>
+                        <span>Categories</span>
+                    </button>
+                    <button onclick="navigateTo('earnings')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-dollar-sign text-green-400"></i>
+                        <span>Earnings</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pages -->
+            <div class="mb-8">
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-4">Pages</h3>
+                <div class="space-y-2">
+                    <button onclick="navigateTo('about')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-info-circle text-blue-400"></i>
+                        <span>About Us</span>
+                    </button>
+                    <button onclick="navigateTo('contact')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-envelope text-purple-400"></i>
+                        <span>Contact</span>
+                    </button>
+                    <button onclick="navigateTo('privacy')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-shield-alt text-gray-400"></i>
+                        <span>Privacy Policy</span>
+                    </button>
+                    <button onclick="navigateTo('terms')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition text-left">
+                        <i class="fas fa-file-contract text-gray-400"></i>
+                        <span>Terms of Service</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="bg-gray-800 rounded-xl p-4">
+                <h3 class="text-sm font-semibold mb-3">Quick Stats</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Total Articles</span>
+                        <span class="font-bold" id="totalArticles">50</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Total Views</span>
+                        <span class="font-bold">2.5M</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Subscribers</span>
+                        <span class="font-bold">127K</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">This Month</span>
+                        <span class="font-bold text-green-400">+$4,250</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <button onclick="adminLogout()" class="w-full mt-6 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-bold transition flex items-center justify-center">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="mainContent">
+        <!-- Navigation -->
+        <nav class="sticky top-0 z-40 nav-blur shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="#" onclick="navigateTo('home')" class="flex items-center space-x-2">
+                        <div id="logoContainer" class="w-10 h-10 hero-gradient rounded-xl flex items-center justify-center">
+                            <i id="logoIconDisplay" class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold"><span id="siteNameDisplay">Digital</span><span class="gradient-text" id="siteNameDisplay2">Pulse</span></span>
+                    </a>
+                    
+                    <div class="hidden lg:flex items-center space-x-6">
+                        <a href="#" onclick="navigateTo('home')" class="text-gray-700 hover:text-purple-600 font-medium transition">Home</a>
+                        <div class="relative group">
+                            <a href="#" onclick="navigateTo('categories')" class="text-gray-700 hover:text-purple-600 font-medium transition flex items-center">
+                                Categories <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </a>
+                            <div class="absolute top-full left-0 bg-white rounded-xl shadow-xl py-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                                <a href="#" onclick="navigateTo('category-money')" class="block px-4 py-2 hover:bg-purple-50 transition">💰 Make Money Online</a>
+                                <a href="#" onclick="navigateTo('category-ai')" class="block px-4 py-2 hover:bg-purple-50 transition">🤖 AI & Technology</a>
+                                <a href="#" onclick="navigateTo('category-sidehustle')" class="block px-4 py-2 hover:bg-purple-50 transition">🚀 Side Hustles</a>
+                                <a href="#" onclick="navigateTo('category-freelancing')" class="block px-4 py-2 hover:bg-purple-50 transition">💻 Freelancing</a>
+                                <a href="#" onclick="navigateTo('category-investing')" class="block px-4 py-2 hover:bg-purple-50 transition">📈 Investing</a>
+                                <a href="#" onclick="navigateTo('category-productivity')" class="block px-4 py-2 hover:bg-purple-50 transition">🧠 Productivity</a>
+                            </div>
+                        </div>
+                        <a href="#" onclick="navigateTo('articles')" class="text-gray-700 hover:text-purple-600 font-medium transition">Articles</a>
+                        <a href="#" onclick="navigateTo('earn')" class="text-gray-700 hover:text-purple-600 font-medium transition">💰 Earn</a>
+                        <a href="#" onclick="navigateTo('resources')" class="text-gray-700 hover:text-purple-600 font-medium transition">🎁 Resources</a>
+                        <a href="#" onclick="navigateTo('about')" class="text-gray-700 hover:text-purple-600 font-medium transition">About</a>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <button onclick="openSearch()" class="p-2 hover:bg-gray-100 rounded-full transition">
+                            <i class="fas fa-search text-gray-600"></i>
+                        </button>
+                        <div class="hidden md:flex items-center bg-yellow-100 px-3 py-1.5 rounded-full cursor-pointer" onclick="showPoints()">
+                            <i class="fas fa-coins text-yellow-600 mr-2"></i>
+                            <span class="font-bold text-yellow-700" id="userPoints">0</span>
+                        </div>
+                        <button onclick="navigateTo('add-article')" class="hidden md:flex items-center bg-purple-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-purple-700 transition">
+                            <i class="fas fa-plus mr-2"></i> Write
+                        </button>
+                        <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                            <i class="fas fa-bars text-gray-600 text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t shadow-lg fixed w-full z-30">
+            <div class="px-4 py-4 space-y-2">
+                <a href="#" onclick="navigateTo('home')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">🏠 Home</a>
+                <a href="#" onclick="navigateTo('categories')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">📚 Categories</a>
+                <a href="#" onclick="navigateTo('articles')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">📰 All Articles</a>
+                <a href="#" onclick="navigateTo('earn')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">💰 Earn Money</a>
+                <a href="#" onclick="navigateTo('resources')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">🎁 Free Resources</a>
+                <a href="#" onclick="navigateTo('about')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">ℹ️ About Us</a>
+                <a href="#" onclick="navigateTo('contact')" class="block py-3 px-4 rounded-lg hover:bg-purple-50">📧 Contact</a>
+                <button onclick="navigateTo('add-article')" class="w-full bg-purple-600 text-white py-3 rounded-xl font-bold mt-4">
+                    <i class="fas fa-plus mr-2"></i> Write Article
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Page Content -->
+        <div id="pageContent">
+            <!-- Home Page will be loaded here -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                    <div class="lg:col-span-2">
+                        <div class="flex items-center space-x-2 mb-6">
+                            <div class="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center">
+                                <i class="fas fa-bolt text-white text-2xl"></i>
+                            </div>
+                            <span class="text-2xl font-bold">DigitalPulse</span>
+                        </div>
+                        <p class="text-gray-400 mb-6">
+                            The #1 platform for making money online. Learn, earn, and grow with our community of 500,000+ digital entrepreneurs worldwide.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="https://facebook.com" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-instagram"></i></a>
+                            <a href="https://youtube.com" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fab fa-youtube"></i></a>
+                            <a href="https://tiktok.com" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black transition"><i class="fab fa-tiktok"></i></a>
+                            <a href="https://linkedin.com" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg mb-6">Categories</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" onclick="navigateTo('category-money')" class="hover:text-white transition">💰 Make Money Online</a></li>
+                            <li><a href="#" onclick="navigateTo('category-ai')" class="hover:text-white transition">🤖 AI & Technology</a></li>
+                            <li><a href="#" onclick="navigateTo('category-sidehustle')" class="hover:text-white transition">🚀 Side Hustles</a></li>
+                            <li><a href="#" onclick="navigateTo('category-freelancing')" class="hover:text-white transition">💻 Freelancing</a></li>
+                            <li><a href="#" onclick="navigateTo('category-investing')" class="hover:text-white transition">📈 Investing</a></li>
+                            <li><a href="#" onclick="navigateTo('category-productivity')" class="hover:text-white transition">🧠 Productivity</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg mb-6">Community</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" onclick="navigateTo('add-article')" class="hover:text-white transition">✍️ Write for Us</a></li>
+                            <li><a href="#" onclick="navigateTo('earn')" class="hover:text-white transition">💵 Earn Money</a></li>
+                            <li><a href="#" onclick="navigateTo('leaderboard')" class="hover:text-white transition">🏆 Leaderboard</a></li>
+                            <li><a href="#" onclick="navigateTo('resources')" class="hover:text-white transition">🎁 Free Resources</a></li>
+                            <li><a href="#" onclick="navigateTo('reviews')" class="hover:text-white transition">⭐ Reviews</a></li>
+                            <li><a href="#" onclick="navigateTo('affiliate')" class="hover:text-white transition">🤝 Affiliate Program</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg mb-6">Company</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" onclick="navigateTo('about')" class="hover:text-white transition">About Us</a></li>
+                            <li><a href="#" onclick="navigateTo('contact')" class="hover:text-white transition">Contact</a></li>
+                            <li><a href="#" onclick="navigateTo('advertise')" class="hover:text-white transition">Advertise</a></li>
+                            <li><a href="#" onclick="navigateTo('privacy')" class="hover:text-white transition">Privacy Policy</a></li>
+                            <li><a href="#" onclick="navigateTo('terms')" class="hover:text-white transition">Terms of Service</a></li>
+                            <li><a href="#" onclick="navigateTo('report')" class="hover:text-white transition">Report Issue</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-gray-500 text-sm">
+                            © 2024 DigitalPulse. All rights reserved. Made with ❤️ for entrepreneurs worldwide.
+                        </p>
+                        <div class="flex items-center space-x-4 text-gray-500 text-sm">
+                            <span>🌍 Available in 180+ countries</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0" onclick="closeSearch()"></div>
+        <div class="relative z-10 max-w-3xl mx-auto mt-20 px-4">
+            <div class="bg-white rounded-2xl shadow-2xl p-6">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
+                    <input type="text" id="searchInput" placeholder="Search articles, topics, guides..." 
+                        class="w-full pl-12 pr-4 py-4 text-xl border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none"
+                        oninput="performSearch()">
+                </div>
+                <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl z-50 hidden">
+        <div class="flex items-center space-x-3">
+            <i class="fas fa-check-circle text-green-400 text-xl"></i>
+            <span id="toastMessage">Success!</span>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" onclick="scrollToTop()" 
+        class="fixed bottom-6 right-6 w-14 h-14 bg-purple-600 text-white rounded-full shadow-xl flex items-center justify-center hover:bg-purple-700 transition-all opacity-0 invisible z-40">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+        // ==================== DATABASE ====================
+        const articlesDB = [
+            // MAKE MONEY ONLINE
+            { id: 1, title: "50 Proven Ways to Make Money Online in 2024", category: "money", emoji: "💰", views: 245000, author: "Sarah Miller", authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face", date: "2024-01-15", readTime: 25, featured: true, 
+              content: `<p>Making money online has never been more accessible. In this comprehensive guide, we'll explore 50 proven methods that people are using right now to generate income from their computers or smartphones.</p>
+              <h2>1. Freelancing</h2><p>Platforms like <a href="https://www.upwork.com" target="_blank" class="text-purple-600 hover:underline">Upwork</a>, <a href="https://www.fiverr.com" target="_blank" class="text-purple-600 hover:underline">Fiverr</a>, and <a href="https://www.toptal.com" target="_blank" class="text-purple-600 hover:underline">Toptal</a> connect freelancers with clients worldwide.</p>
+              <h2>2. Affiliate Marketing</h2><p>Join programs like <a href="https://affiliate-program.amazon.com" target="_blank" class="text-purple-600 hover:underline">Amazon Associates</a>, <a href="https://www.shareasale.com" target="_blank" class="text-purple-600 hover:underline">ShareASale</a>, or <a href="https://www.cj.com" target="_blank" class="text-purple-600 hover:underline">CJ Affiliate</a>.</p>
+              <h2>3. Dropshipping</h2><p>Start with <a href="https://www.shopify.com" target="_blank" class="text-purple-600 hover:underline">Shopify</a> + <a href="https://www.oberlo.com" target="_blank" class="text-purple-600 hover:underline">Oberlo</a> or <a href="https://www.aliexpress.com" target="_blank" class="text-purple-600 hover:underline">AliExpress</a>.</p>
+              <h2>4. YouTube Channel</h2><p>Create content and monetize through <a href="https://www.youtube.com/creators" target="_blank" class="text-purple-600 hover:underline">YouTube Partner Program</a>.</p>
+              <h2>5. Online Courses</h2><p>Use <a href="https://www.teachable.com" target="_blank" class="text-purple-600 hover:underline">Teachable</a>, <a href="https://www.udemy.com" target="_blank" class="text-purple-600 hover:underline">Udemy</a>, or <a href="https://www.skillshare.com" target="_blank" class="text-purple-600 hover:underline">Skillshare</a>.</p>`,
+              summary: "Complete guide covering freelancing, affiliate marketing, dropshipping, YouTube, online courses, and 45 more proven methods." },
+            
+            { id: 2, title: "Affiliate Marketing Masterclass: From $0 to $10K/Month", category: "money", emoji: "💰", views: 189000, author: "Mike Johnson", authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face", date: "2024-01-20", readTime: 30, featured: true,
+              content: `<p>Affiliate marketing is one of the most scalable online business models. Here's my exact strategy that took me from zero to $10,000 per month.</p>
+              <h2>Step 1: Choose Your Niche</h2><p>Focus on profitable niches like finance, health, technology, or online education.</p>
+              <h2>Step 2: Build Your Platform</h2><p>Create a blog using <a href="https://wordpress.org" target="_blank" class="text-purple-600 hover:underline">WordPress</a> or start a YouTube channel.</p>
+              <h2>Step 3: Join Affiliate Programs</h2><p>Top programs: <a href="https://affiliate-program.amazon.com" target="_blank" class="text-purple-600 hover:underline">Amazon</a>, <a href="https://www.hostinger.com/affiliates" target="_blank" class="text-purple-600 hover:underline">Hostinger</a>, <a href="https://www.bluehost.com/affiliates" target="_blank" class="text-purple-600 hover:underline">Bluehost</a>, <a href="https://www.semrush.com/affiliate-program/" target="_blank" class="text-purple-600 hover:underline">SEMrush</a>.</p>`,
+              summary: "Step-by-step affiliate marketing strategy with real examples and top programs to join." },
+
+            { id: 3, title: "Dropshipping in 2024: Complete Beginner's Guide", category: "money", emoji: "💰", views: 156000, author: "Elena Rodriguez", authorImg: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face", date: "2024-01-18", readTime: 22,
+              content: `<p>Dropshipping allows you to sell products without holding inventory. Here's everything you need to start.</p>
+              <h2>What You Need</h2><ul><li><a href="https://www.shopify.com" target="_blank" class="text-purple-600 hover:underline">Shopify</a> store ($29/month)</li><li>Supplier from <a href="https://www.aliexpress.com" target="_blank" class="text-purple-600 hover:underline">AliExpress</a> or <a href="https://www.spocket.co" target="_blank" class="text-purple-600 hover:underline">Spocket</a></li><li>Marketing budget ($500-1000)</li></ul>`,
+              summary: "Learn how to start a profitable dropshipping business with minimal investment." },
+
+            // AI & TECHNOLOGY  
+            { id: 4, title: "ChatGPT: 100 Prompts That Will 10x Your Productivity", category: "ai", emoji: "🤖", views: 312000, author: "Alex Chen", authorImg: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face", date: "2024-01-22", readTime: 18, featured: true,
+              content: `<p>Master <a href="https://chat.openai.com" target="_blank" class="text-purple-600 hover:underline">ChatGPT</a> with these 100 prompts for writing, coding, business, and creativity.</p>
+              <h2>Writing Prompts</h2><p>"Write a compelling blog post about [topic] in a conversational tone..."</p>
+              <h2>Coding Prompts</h2><p>"Debug this code and explain the issue: [paste code]..."</p>
+              <h2>Business Prompts</h2><p>"Create a 30-day marketing plan for a [type] business..."</p>`,
+              summary: "100 powerful ChatGPT prompts for writing, coding, business, and creativity." },
+
+            { id: 5, title: "Midjourney AI Art: From Beginner to Professional", category: "ai", emoji: "🤖", views: 198000, author: "Lisa Wang", authorImg: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face", date: "2024-01-25", readTime: 20,
+              content: `<p>Create stunning AI art with <a href="https://www.midjourney.com" target="_blank" class="text-purple-600 hover:underline">Midjourney</a>. Learn prompt engineering, styles, and how to sell your art.</p>
+              <h2>Getting Started</h2><p>Join the <a href="https://discord.gg/midjourney" target="_blank" class="text-purple-600 hover:underline">Midjourney Discord</a> and subscribe ($10-60/month).</p>
+              <h2>Prompt Structure</h2><p>[Subject] + [Style] + [Lighting] + [Parameters] = Amazing Art</p>`,
+              summary: "Complete Midjourney guide covering prompts, styles, and monetization strategies." },
+
+            { id: 6, title: "Best AI Tools for Entrepreneurs in 2024", category: "ai", emoji: "🤖", views: 178000, author: "David Park", authorImg: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face", date: "2024-01-28", readTime: 15,
+              content: `<h2>Top AI Tools</h2>
+              <ul>
+              <li><a href="https://chat.openai.com" target="_blank" class="text-purple-600 hover:underline">ChatGPT</a> - Writing & Research</li>
+              <li><a href="https://www.midjourney.com" target="_blank" class="text-purple-600 hover:underline">Midjourney</a> - AI Art</li>
+              <li><a href="https://www.copy.ai" target="_blank" class="text-purple-600 hover:underline">Copy.ai</a> - Marketing Copy</li>
+              <li><a href="https://www.jasper.ai" target="_blank" class="text-purple-600 hover:underline">Jasper</a> - Content Creation</li>
+              <li><a href="https://www.notion.so/product/ai" target="_blank" class="text-purple-600 hover:underline">Notion AI</a> - Productivity</li>
+              <li><a href="https://www.descript.com" target="_blank" class="text-purple-600 hover:underline">Descript</a> - Video Editing</li>
+              </ul>`,
+              summary: "Curated list of the best AI tools for productivity, content creation, and business." },
+
+            // SIDE HUSTLES
+            { id: 7, title: "50 Side Hustles You Can Start This Weekend", category: "sidehustle", emoji: "🚀", views: 287000, author: "Jennifer Lee", authorImg: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face", date: "2024-01-12", readTime: 28, featured: true,
+              content: `<h2>Low Investment Side Hustles</h2>
+              <p>1. <strong>Pet Sitting</strong> - Use <a href="https://www.rover.com" target="_blank" class="text-purple-600 hover:underline">Rover</a> ($15-50/day)</p>
+              <p>2. <strong>Food Delivery</strong> - <a href="https://www.doordash.com" target="_blank" class="text-purple-600 hover:underline">DoorDash</a>, <a href="https://www.ubereats.com" target="_blank" class="text-purple-600 hover:underline">UberEats</a></p>
+              <p>3. <strong>Online Tutoring</strong> - <a href="https://www.tutor.com" target="_blank" class="text-purple-600 hover:underline">Tutor.com</a>, <a href="https://www.chegg.com" target="_blank" class="text-purple-600 hover:underline">Chegg</a></p>
+              <p>4. <strong>Virtual Assistant</strong> - <a href="https://www.belay.com" target="_blank" class="text-purple-600 hover:underline">Belay</a>, <a href="https://www.timeetc.com" target="_blank" class="text-purple-600 hover:underline">Time Etc</a></p>`,
+              summary: "50 proven side hustles from pet sitting to freelancing, with real earning potential." },
+
+            { id: 8, title: "How to Start a Print on Demand Business", category: "sidehustle", emoji: "🚀", views: 145000, author: "Marcus Brown", authorImg: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&crop=face", date: "2024-01-30", readTime: 20,
+              content: `<p>Print on demand lets you sell custom products without inventory.</p>
+              <h2>Best Platforms</h2>
+              <ul>
+              <li><a href="https://www.printful.com" target="_blank" class="text-purple-600 hover:underline">Printful</a> - Best overall</li>
+              <li><a href="https://www.printify.com" target="_blank" class="text-purple-600 hover:underline">Printify</a> - Lowest prices</li>
+              <li><a href="https://www.redbubble.com" target="_blank" class="text-purple-600 hover:underline">Redbubble</a> - Built-in marketplace</li>
+              <li><a href="https://merch.amazon.com" target="_blank" class="text-purple-600 hover:underline">Merch by Amazon</a> - Huge audience</li>
+              </ul>`,
+              summary: "Start selling custom t-shirts, mugs, and more without holding inventory." },
+
+            // FREELANCING
+            { id: 9, title: "Upwork Success: How I Made $100K in My First Year", category: "freelancing", emoji: "💻", views: 234000, author: "Rachel Green", authorImg: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&h=80&fit=crop&crop=face", date: "2024-01-08", readTime: 25, featured: true,
+              content: `<p>My exact strategy for succeeding on <a href="https://www.upwork.com" target="_blank" class="text-purple-600 hover:underline">Upwork</a> from day one.</p>
+              <h2>Profile Optimization</h2><p>Your profile is your sales page. Include portfolio, testimonials, and clear pricing.</p>
+              <h2>Proposal Strategy</h2><p>Personalize every proposal. Reference the client's specific needs.</p>
+              <h2>Pricing Strategy</h2><p>Start competitive, raise rates after 10+ reviews.</p>`,
+              summary: "Complete Upwork strategy covering profile optimization, proposals, and pricing." },
+
+            { id: 10, title: "Fiverr Gig Optimization: Rank #1 in Your Category", category: "freelancing", emoji: "💻", views: 167000, author: "Tom Wilson", authorImg: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=80&h=80&fit=crop&crop=face", date: "2024-02-01", readTime: 18,
+              content: `<p>Optimize your <a href="https://www.fiverr.com" target="_blank" class="text-purple-600 hover:underline">Fiverr</a> gigs to rank higher and get more orders.</p>
+              <h2>Title Optimization</h2><p>Include keywords buyers search for.</p>
+              <h2>Gig Images</h2><p>Use <a href="https://www.canva.com" target="_blank" class="text-purple-600 hover:underline">Canva</a> for professional gig images.</p>`,
+              summary: "SEO strategies to rank your Fiverr gigs and increase sales." },
+
+            // INVESTING
+            { id: 11, title: "Stock Market Investing for Complete Beginners", category: "investing", emoji: "📈", views: 198000, author: "James Morgan", authorImg: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face", date: "2024-01-05", readTime: 30, featured: true,
+              content: `<p>Start investing in stocks with this beginner-friendly guide.</p>
+              <h2>Best Brokers for Beginners</h2>
+              <ul>
+              <li><a href="https://www.fidelity.com" target="_blank" class="text-purple-600 hover:underline">Fidelity</a> - Zero fees, great education</li>
+              <li><a href="https://www.schwab.com" target="_blank" class="text-purple-600 hover:underline">Charles Schwab</a> - Full service</li>
+              <li><a href="https://www.robinhood.com" target="_blank" class="text-purple-600 hover:underline">Robinhood</a> - Mobile-first</li>
+              <li><a href="https://www.etrade.com" target="_blank" class="text-purple-600 hover:underline">E*TRADE</a> - Great tools</li>
+              </ul>`,
+              summary: "Complete beginner's guide to stock market investing with broker comparisons." },
+
+            { id: 12, title: "ETF Investing: Build Wealth on Autopilot", category: "investing", emoji: "📈", views: 156000, author: "Emily Davis", authorImg: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face", date: "2024-01-28", readTime: 22,
+              content: `<p>ETFs (Exchange-Traded Funds) are the easiest way to build wealth passively.</p>
+              <h2>Best ETFs for Beginners</h2>
+              <ul>
+              <li><strong>VTI</strong> - Total US Stock Market</li>
+              <li><strong>VOO</strong> - S&P 500 Index</li>
+              <li><strong>VXUS</strong> - International Stocks</li>
+              <li><strong>BND</strong> - Total Bond Market</li>
+              </ul>
+              <p>Learn more at <a href="https://www.vanguard.com" target="_blank" class="text-purple-600 hover:underline">Vanguard</a> or <a href="https://www.ishares.com" target="_blank" class="text-purple-600 hover:underline">iShares</a>.</p>`,
+              summary: "Passive investing with ETFs - the lazy person's path to wealth." },
+
+            { id: 13, title: "Cryptocurrency Investing: A Beginner's Guide", category: "investing", emoji: "📈", views: 203000, author: "Chris Taylor", authorImg: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face", date: "2024-02-02", readTime: 25,
+              content: `<p>Learn the basics of cryptocurrency investing safely.</p>
+              <h2>Top Exchanges</h2>
+              <ul>
+              <li><a href="https://www.coinbase.com" target="_blank" class="text-purple-600 hover:underline">Coinbase</a> - Best for beginners</li>
+              <li><a href="https://www.binance.com" target="_blank" class="text-purple-600 hover:underline">Binance</a> - Lowest fees</li>
+              <li><a href="https://www.kraken.com" target="_blank" class="text-purple-600 hover:underline">Kraken</a> - Security focused</li>
+              </ul>`,
+              summary: "Safe introduction to cryptocurrency investing with exchange comparisons." },
+
+            // PRODUCTIVITY
+            { id: 14, title: "Morning Routines of Millionaire Entrepreneurs", category: "productivity", emoji: "🧠", views: 267000, author: "Anna White", authorImg: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face", date: "2024-01-10", readTime: 15, featured: true,
+              content: `<p>The morning routines of successful entrepreneurs like Elon Musk, Tim Cook, and Jeff Bezos.</p>
+              <h2>Common Elements</h2>
+              <ul>
+              <li>Wake up early (5-6 AM)</li>
+              <li>Exercise first thing</li>
+              <li>No phone for first hour</li>
+              <li>Meditation or journaling</li>
+              <li>High-protein breakfast</li>
+              </ul>
+              <p>Track your habits with <a href="https://www.notion.so" target="_blank" class="text-purple-600 hover:underline">Notion</a> or <a href="https://habitify.me" target="_blank" class="text-purple-600 hover:underline">Habitify</a>.</p>`,
+              summary: "Learn the morning habits of billionaires and how to implement them." },
+
+            { id: 15, title: "Notion Productivity System: Complete Setup Guide", category: "productivity", emoji: "🧠", views: 189000, author: "Kevin Park", authorImg: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=80&h=80&fit=crop&crop=face", date: "2024-02-05", readTime: 20,
+              content: `<p>Build the ultimate productivity system in <a href="https://www.notion.so" target="_blank" class="text-purple-600 hover:underline">Notion</a>.</p>
+              <h2>Essential Databases</h2>
+              <ul>
+              <li>Task Manager with priorities</li>
+              <li>Project tracker with timelines</li>
+              <li>Goal setting dashboard</li>
+              <li>Note-taking system (Zettelkasten)</li>
+              </ul>`,
+              summary: "Build a complete life operating system in Notion from scratch." },
+
+            // More articles...
+            { id: 16, title: "Remote Work: Find Jobs That Pay $100K+", category: "freelancing", emoji: "💻", views: 145000, author: "Sarah Miller", authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face", date: "2024-02-08", readTime: 18,
+              content: `<h2>Best Remote Job Boards</h2>
+              <ul>
+              <li><a href="https://weworkremotely.com" target="_blank" class="text-purple-600 hover:underline">We Work Remotely</a></li>
+              <li><a href="https://remoteok.com" target="_blank" class="text-purple-600 hover:underline">Remote OK</a></li>
+              <li><a href="https://www.flexjobs.com" target="_blank" class="text-purple-600 hover:underline">FlexJobs</a></li>
+              <li><a href="https://www.linkedin.com/jobs" target="_blank" class="text-purple-600 hover:underline">LinkedIn Jobs</a></li>
+              </ul>`,
+              summary: "Top remote job boards and strategies to land high-paying remote positions." },
+
+            { id: 17, title: "YouTube Monetization: Complete Guide 2024", category: "money", emoji: "💰", views: 178000, author: "Mike Johnson", authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face", date: "2024-02-10", readTime: 25,
+              content: `<p>Monetize your YouTube channel with multiple income streams.</p>
+              <h2>Requirements</h2>
+              <ul><li>1,000 subscribers</li><li>4,000 watch hours OR 10M Shorts views</li></ul>
+              <h2>Income Streams</h2>
+              <ul><li>AdSense revenue</li><li>Sponsorships</li><li>Affiliate links</li><li>Merchandise</li><li>Memberships</li></ul>`,
+              summary: "Everything you need to know about YouTube monetization in 2024." },
+
+            { id: 18, title: "Time Blocking: The Productivity Method of Billionaires", category: "productivity", emoji: "🧠", views: 134000, author: "Anna White", authorImg: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face", date: "2024-02-12", readTime: 12,
+              content: `<p>Time blocking is used by Elon Musk, Bill Gates, and Cal Newport.</p>
+              <h2>How It Works</h2>
+              <p>Divide your day into blocks dedicated to specific tasks. Use <a href="https://calendar.google.com" target="_blank" class="text-purple-600 hover:underline">Google Calendar</a> or <a href="https://www.notion.so" target="_blank" class="text-purple-600 hover:underline">Notion</a>.</p>`,
+              summary: "Master the time blocking method used by the world's most productive people." },
+
+            { id: 19, title: "Passive Income: 20 Ideas That Actually Work", category: "money", emoji: "💰", views: 223000, author: "Elena Rodriguez", authorImg: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face", date: "2024-02-15", readTime: 22,
+              content: `<h2>Proven Passive Income Ideas</h2>
+              <ol>
+              <li>Dividend stocks</li>
+              <li>REITs (Real Estate Investment Trusts)</li>
+              <li>Create an online course</li>
+              <li>Write an ebook</li>
+              <li>Affiliate marketing</li>
+              <li>YouTube channel</li>
+              <li>Print on demand</li>
+              <li>Rental properties</li>
+              <li>Peer-to-peer lending</li>
+              <li>Create an app</li>
+              </ol>`,
+              summary: "20 legitimate passive income ideas with realistic earning potential." },
+
+            { id: 20, title: "No-Code Tools: Build Apps Without Coding", category: "ai", emoji: "🤖", views: 156000, author: "David Park", authorImg: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face", date: "2024-02-18", readTime: 18,
+              content: `<h2>Best No-Code Platforms</h2>
+              <ul>
+              <li><a href="https://www.bubble.io" target="_blank" class="text-purple-600 hover:underline">Bubble</a> - Full web apps</li>
+              <li><a href="https://webflow.com" target="_blank" class="text-purple-600 hover:underline">Webflow</a> - Websites</li>
+              <li><a href="https://www.airtable.com" target="_blank" class="text-purple-600 hover:underline">Airtable</a> - Databases</li>
+              <li><a href="https://zapier.com" target="_blank" class="text-purple-600 hover:underline">Zapier</a> - Automation</li>
+              <li><a href="https://www.glideapps.com" target="_blank" class="text-purple-600 hover:underline">Glide</a> - Mobile apps</li>
+              </ul>`,
+              summary: "Build apps, websites, and automation without writing a single line of code." }
+        ];
+
+        // User data
+        let userData = JSON.parse(localStorage.getItem('userData')) || { points: 0, articles: [], reviews: [] };
+
+        // ==================== PAGE TEMPLATES ====================
+        const pages = {
+            home: () => `
+                <!-- Announcement Bar -->
+                <div class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white py-2 text-center text-sm font-medium">
+                    🎉 EARN MONEY by contributing! Write articles & earn up to $500/month! 
+                    <a href="#" onclick="navigateTo('earn')" class="underline ml-2 font-bold">Learn More →</a>
+                </div>
+
+                <!-- Hero -->
+                <section class="hero-gradient text-white py-16 lg:py-24">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <div class="flex gap-3 mb-6">
+                                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm">🌍 500,000+ Readers Worldwide</span>
+                                </div>
+                                <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                                    Learn, Earn &<br>
+                                    <span class="text-yellow-300">Grow Together</span> 🚀
+                                </h1>
+                                <p class="text-xl text-white/90 mb-8">
+                                    Join the #1 community for digital entrepreneurs. Free guides on making money online, AI tools, investing, and more.
+                                </p>
+                                <div class="flex flex-wrap gap-4">
+                                    <a href="#" onclick="navigateTo('articles')" class="bg-white text-purple-600 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition">
+                                        <i class="fas fa-rocket mr-2"></i> Start Learning
+                                    </a>
+                                    <a href="#" onclick="navigateTo('earn')" class="border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-purple-600 transition">
+                                        <i class="fas fa-dollar-sign mr-2"></i> Start Earning
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="hidden lg:block">
+                                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
+                                    <div class="text-center mb-6">
+                                        <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <i class="fas fa-trophy text-white text-3xl"></i>
+                                        </div>
+                                        <h3 class="text-2xl font-bold">Top Earners This Month</h3>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <div class="bg-white/10 rounded-xl p-4 flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" class="w-10 h-10 rounded-full" alt="">
+                                                <div class="ml-3"><p class="font-semibold">Sarah Miller</p><p class="text-xs text-white/60">42 articles</p></div>
+                                            </div>
+                                            <span class="text-green-400 font-bold">$2,847</span>
+                                        </div>
+                                        <div class="bg-white/10 rounded-xl p-4 flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" class="w-10 h-10 rounded-full" alt="">
+                                                <div class="ml-3"><p class="font-semibold">Mike Johnson</p><p class="text-xs text-white/60">38 articles</p></div>
+                                            </div>
+                                            <span class="text-green-400 font-bold">$1,923</span>
+                                        </div>
+                                        <div class="bg-white/10 rounded-xl p-4 flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" class="w-10 h-10 rounded-full" alt="">
+                                                <div class="ml-3"><p class="font-semibold">Elena Rodriguez</p><p class="text-xs text-white/60">35 articles</p></div>
+                                            </div>
+                                            <span class="text-green-400 font-bold">$1,456</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats -->
+                <section class="bg-white py-6 shadow-xl relative z-20 -mt-6 mx-4 lg:mx-auto max-w-5xl rounded-2xl border">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+                        <div class="text-center">
+                            <div class="text-2xl lg:text-3xl font-bold gradient-text">500K+</div>
+                            <div class="text-gray-500 text-sm">Monthly Readers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl lg:text-3xl font-bold gradient-text">1,200+</div>
+                            <div class="text-gray-500 text-sm">Articles</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl lg:text-3xl font-bold gradient-text">$125K+</div>
+                            <div class="text-gray-500 text-sm">Paid to Writers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl lg:text-3xl font-bold gradient-text">180+</div>
+                            <div class="text-gray-500 text-sm">Countries</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Categories -->
+                <section class="py-20 max-w-7xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold">📚 EXPLORE</span>
+                        <h2 class="text-3xl lg:text-4xl font-bold mt-4">Browse Categories</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${generateCategoryCards()}
+                    </div>
+                </section>
+
+                <!-- Featured Articles -->
+                <section class="py-20 bg-white">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex justify-between items-center mb-12">
+                            <div>
+                                <span class="text-orange-500 font-semibold">🔥 TRENDING</span>
+                                <h2 class="text-3xl font-bold">Featured Articles</h2>
+                            </div>
+                            <a href="#" onclick="navigateTo('articles')" class="text-purple-600 font-semibold hover:underline">View All →</a>
+                        </div>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${articlesDB.filter(a => a.featured).slice(0, 6).map(article => generateArticleCard(article)).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Newsletter -->
+                <section class="py-20 hero-gradient text-white">
+                    <div class="max-w-4xl mx-auto px-4 text-center">
+                        <h2 class="text-3xl lg:text-4xl font-bold mb-6">Join 500,000+ Entrepreneurs</h2>
+                        <p class="text-xl text-white/90 mb-8">Get weekly tips on making money online, AI tools, and productivity hacks.</p>
+                        <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto" onsubmit="subscribeNewsletter(event)">
+                            <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 rounded-full text-gray-800" required>
+                            <button type="submit" class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition">
+                                Subscribe Free
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            `,
+
+            articles: () => `
+                <div class="max-w-7xl mx-auto px-4 py-12">
+                    <div class="mb-12">
+                        <h1 class="text-4xl font-bold mb-4">📰 All Articles</h1>
+                        <p class="text-gray-600">Browse our complete library of guides, tutorials, and resources.</p>
+                    </div>
+                    
+                    <!-- Filter -->
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <button onclick="filterArticles('all')" class="px-4 py-2 bg-purple-600 text-white rounded-full font-medium">All</button>
+                        <button onclick="filterArticles('money')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium">💰 Make Money</button>
+                        <button onclick="filterArticles('ai')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium">🤖 AI & Tech</button>
+                        <button onclick="filterArticles('sidehustle')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium">🚀 Side Hustles</button>
+                        <button onclick="filterArticles('freelancing')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium">💻 Freelancing</button>
+                        <button onclick="filterArticles('investing')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium">📈 Investing</button>
+                        <button onclick="filterArticles('productivity')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium">🧠 Productivity</button>
+                    </div>
+                    
+                    <div id="articlesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        ${articlesDB.map(article => generateArticleCard(article)).join('')}
+                    </div>
+                </div>
+            `,
+
+            'add-article': () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h1 class="text-3xl font-bold mb-2">✍️ Write an Article</h1>
+                        <p class="text-gray-600 mb-8">Share your knowledge and earn money from views!</p>
+                        
+                        <div class="bg-green-50 rounded-xl p-4 mb-8">
+                            <p class="text-green-700 font-medium"><i class="fas fa-coins mr-2"></i> Earn $5-$50 per 1,000 views on your article!</p>
+                        </div>
+
+                        <form onsubmit="submitArticle(event)" class="space-y-6">
+                            <div>
+                                <label class="block font-semibold mb-2">Article Title *</label>
+                                <input type="text" id="articleTitle" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="E.g., How I Made $5000 with AI Tools">
+                            </div>
+                            
+                            <div>
+                                <label class="block font-semibold mb-2">Category *</label>
+                                <select id="articleCategory" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none">
+                                    <option value="">Select Category</option>
+                                    <option value="money">💰 Make Money Online</option>
+                                    <option value="ai">🤖 AI & Technology</option>
+                                    <option value="sidehustle">🚀 Side Hustles</option>
+                                    <option value="freelancing">💻 Freelancing</option>
+                                    <option value="investing">📈 Investing</option>
+                                    <option value="productivity">🧠 Productivity</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block font-semibold mb-2">Summary *</label>
+                                <textarea id="articleSummary" rows="3" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="Brief description (150-200 words)"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block font-semibold mb-2">Full Content *</label>
+                                <textarea id="articleContent" rows="15" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="Write your full article here... (Minimum 500 words)"></textarea>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block font-semibold mb-2">Your Name *</label>
+                                    <input type="text" id="authorName" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="Your full name">
+                                </div>
+                                <div>
+                                    <label class="block font-semibold mb-2">Email *</label>
+                                    <input type="email" id="authorEmail" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="your@email.com">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-purple-600 text-white py-4 rounded-xl font-bold hover:bg-purple-700 transition">
+                                <i class="fas fa-paper-plane mr-2"></i> Submit Article for Review
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `,
+
+            about: () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl font-bold mb-4">About DigitalPulse</h1>
+                        <p class="text-xl text-gray-600">Empowering entrepreneurs worldwide since 2020</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-8">
+                        <h2 class="text-2xl font-bold mb-4">🎯 Our Mission</h2>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                            DigitalPulse was founded with a simple mission: to democratize financial education and help everyone, 
+                            regardless of their background, learn how to build income online. We believe that the internet has 
+                            created unprecedented opportunities for wealth creation, and we're here to help you take advantage of them.
+                        </p>
+                        
+                        <h2 class="text-2xl font-bold mb-4 mt-8">💡 What We Do</h2>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Publish in-depth guides on making money online</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Review and recommend the best AI tools and platforms</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Pay writers for their contributions (up to $500/month)</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Provide free resources, templates, and tools</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Build a supportive community of like-minded entrepreneurs</li>
+                        </ul>
+                        
+                        <h2 class="text-2xl font-bold mb-4 mt-8">📊 Our Impact</h2>
+                        <div class="grid md:grid-cols-4 gap-6 mt-6">
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">500K+</div>
+                                <div class="text-gray-600">Monthly Readers</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">180+</div>
+                                <div class="text-gray-600">Countries</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">$125K</div>
+                                <div class="text-gray-600">Paid to Writers</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">1,200+</div>
+                                <div class="text-gray-600">Articles</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h2 class="text-2xl font-bold mb-6">👥 Meet the Team</h2>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" class="w-24 h-24 rounded-full mx-auto mb-4" alt="">
+                                <h3 class="font-bold">Alex Chen</h3>
+                                <p class="text-gray-600">Founder & CEO</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" class="w-24 h-24 rounded-full mx-auto mb-4" alt="">
+                                <h3 class="font-bold">Sarah Miller</h3>
+                                <p class="text-gray-600">Head of Content</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" class="w-24 h-24 rounded-full mx-auto mb-4" alt="">
+                                <h3 class="font-bold">Mike Johnson</h3>
+                                <p class="text-gray-600">Community Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            contact: () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl font-bold mb-4">📧 Contact Us</h1>
+                        <p class="text-xl text-gray-600">We'd love to hear from you!</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-3xl shadow-xl p-8">
+                            <h2 class="text-2xl font-bold mb-6">Send us a Message</h2>
+                            <form onsubmit="submitContact(event)" class="space-y-4">
+                                <div>
+                                    <label class="block font-medium mb-2">Your Name</label>
+                                    <input type="text" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">Email Address</label>
+                                    <input type="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">Subject</label>
+                                    <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none">
+                                        <option>General Inquiry</option>
+                                        <option>Advertising</option>
+                                        <option>Partnership</option>
+                                        <option>Technical Support</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">Message</label>
+                                    <textarea rows="5" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-purple-600 text-white py-4 rounded-xl font-bold hover:bg-purple-700 transition">
+                                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-3xl shadow-xl p-8">
+                                <h3 class="text-xl font-bold mb-4">📍 Contact Information</h3>
+                                <div class="space-y-4 text-gray-700">
+                                    <p><i class="fas fa-envelope text-purple-600 mr-3"></i> hello@digitalpulse.io</p>
+                                    <p><i class="fas fa-globe text-purple-600 mr-3"></i> www.digitalpulse.io</p>
+                                    <p><i class="fab fa-twitter text-purple-600 mr-3"></i> @digitalpulse</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl shadow-xl p-8">
+                                <h3 class="text-xl font-bold mb-4">⏰ Response Time</h3>
+                                <p class="text-gray-700">We typically respond within 24-48 hours during business days.</p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 text-white">
+                                <h3 class="text-xl font-bold mb-4">🤝 Partnership Inquiries</h3>
+                                <p class="text-white/90 mb-4">Interested in advertising or partnerships? We work with brands that align with our mission.</p>
+                                <a href="#" onclick="navigateTo('advertise')" class="inline-block bg-white text-purple-600 px-6 py-2 rounded-full font-bold hover:bg-yellow-300 transition">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            privacy: () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h1 class="text-4xl font-bold mb-6">🔒 Privacy Policy</h1>
+                        <p class="text-gray-600 mb-8">Last updated: February 2024</p>
+                        
+                        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
+                            <h2 class="text-2xl font-bold text-gray-900">1. Information We Collect</h2>
+                            <p>We collect information you provide directly, including name, email address, and content you submit. We also automatically collect usage data such as IP address, browser type, and pages visited.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">2. How We Use Your Information</h2>
+                            <p>We use your information to provide and improve our services, send newsletters (with your consent), process payments for contributors, and analyze site usage.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">3. Cookies</h2>
+                            <p>We use cookies to enhance your experience, remember your preferences, and analyze traffic. You can control cookies through your browser settings.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">4. Third-Party Services</h2>
+                            <p>We use Google Analytics, Google AdSense, and other third-party services that may collect data according to their own privacy policies.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">5. Data Security</h2>
+                            <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">6. Your Rights</h2>
+                            <p>You have the right to access, correct, or delete your personal data. Contact us at privacy@digitalpulse.io for any requests.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">7. Contact</h2>
+                            <p>For privacy-related questions, email us at privacy@digitalpulse.io</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            terms: () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h1 class="text-4xl font-bold mb-6">📜 Terms of Service</h1>
+                        <p class="text-gray-600 mb-8">Last updated: February 2024</p>
+                        
+                        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
+                            <h2 class="text-2xl font-bold text-gray-900">1. Acceptance of Terms</h2>
+                            <p>By accessing DigitalPulse, you agree to these Terms of Service and our Privacy Policy.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">2. User Accounts</h2>
+                            <p>You are responsible for maintaining the security of your account and all activities under it.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">3. Content Guidelines</h2>
+                            <p>All submitted content must be original, accurate, and not violate any laws or third-party rights. We reserve the right to remove content that violates our guidelines.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">4. Earnings Program</h2>
+                            <p>Contributors earn based on article views. Payments are processed monthly for amounts over $50. We reserve the right to modify earning rates with notice.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">5. Intellectual Property</h2>
+                            <p>You retain ownership of content you create. By submitting, you grant us a license to publish and distribute your content.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">6. Disclaimer</h2>
+                            <p>Content is for educational purposes only. We don't guarantee specific financial results. Always do your own research before making financial decisions.</p>
+                            
+                            <h2 class="text-2xl font-bold text-gray-900">7. Changes to Terms</h2>
+                            <p>We may update these terms. Continued use after changes constitutes acceptance.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            report: () => `
+                <div class="max-w-2xl mx-auto px-4 py-12">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h1 class="text-3xl font-bold mb-6">🚨 Report an Issue</h1>
+                        <p class="text-gray-600 mb-8">Help us maintain quality by reporting problems, inaccurate content, or policy violations.</p>
+                        
+                        <form onsubmit="submitReport(event)" class="space-y-6">
+                            <div>
+                                <label class="block font-semibold mb-2">Issue Type *</label>
+                                <select required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none">
+                                    <option value="">Select Issue Type</option>
+                                    <option>Inaccurate Information</option>
+                                    <option>Copyright Violation</option>
+                                    <option>Spam or Scam</option>
+                                    <option>Broken Links</option>
+                                    <option>Technical Bug</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block font-semibold mb-2">Page URL (if applicable)</label>
+                                <input type="url" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="https://...">
+                            </div>
+                            
+                            <div>
+                                <label class="block font-semibold mb-2">Description *</label>
+                                <textarea rows="5" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="Please describe the issue in detail..."></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block font-semibold mb-2">Your Email (optional)</label>
+                                <input type="email" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none" placeholder="For follow-up if needed">
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-red-600 text-white py-4 rounded-xl font-bold hover:bg-red-700 transition">
+                                <i class="fas fa-flag mr-2"></i> Submit Report
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `,
+
+            earn: () => `
+                <div class="hero-gradient text-white py-16">
+                    <div class="max-w-4xl mx-auto px-4 text-center">
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-6">💰 Earn Money With Us</h1>
+                        <p class="text-xl text-white/90">Multiple ways to earn - everyone wins here!</p>
+                    </div>
+                </div>
+                
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                        <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-pen-fancy text-green-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">✍️ Write Articles</h3>
+                            <p class="text-gray-600 mb-4">Submit quality articles and earn based on views</p>
+                            <div class="bg-green-50 rounded-xl p-4">
+                                <p class="text-green-700 font-bold text-2xl">$5-$50</p>
+                                <p class="text-green-600 text-sm">per 1,000 views</p>
+                            </div>
+                            <button onclick="navigateTo('add-article')" class="w-full mt-4 bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition">
+                                Start Writing →
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-share-alt text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">📤 Share & Refer</h3>
+                            <p class="text-gray-600 mb-4">Share articles and earn from referral traffic</p>
+                            <div class="bg-blue-50 rounded-xl p-4">
+                                <p class="text-blue-700 font-bold text-2xl">$1-$10</p>
+                                <p class="text-blue-600 text-sm">per referral signup</p>
+                            </div>
+                            <button onclick="copyReferralLink()" class="w-full mt-4 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">
+                                Get Referral Link →
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-star text-purple-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">⭐ Write Reviews</h3>
+                            <p class="text-gray-600 mb-4">Leave helpful reviews and earn points</p>
+                            <div class="bg-purple-50 rounded-xl p-4">
+                                <p class="text-purple-700 font-bold text-2xl">50-200</p>
+                                <p class="text-purple-600 text-sm">points per review</p>
+                            </div>
+                            <button class="w-full mt-4 bg-purple-600 text-white py-3 rounded-xl font-bold hover:bg-purple-700 transition">
+                                Write Review →
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-trophy text-orange-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">🏅 Monthly Prizes</h3>
+                            <p class="text-gray-600 mb-4">Top contributors win monthly prizes</p>
+                            <div class="bg-orange-50 rounded-xl p-4">
+                                <p class="text-orange-700 font-bold text-2xl">$500</p>
+                                <p class="text-orange-600 text-sm">grand prize</p>
+                            </div>
+                            <button onclick="navigateTo('leaderboard')" class="w-full mt-4 bg-orange-600 text-white py-3 rounded-xl font-bold hover:bg-orange-700 transition">
+                                View Leaderboard →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 rounded-3xl p-8 text-white">
+                        <h2 class="text-2xl font-bold mb-8 flex items-center">
+                            <i class="fas fa-medal mr-3 text-yellow-400"></i> Top Earners This Month
+                        </h2>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl p-6 text-center">
+                                <div class="text-4xl mb-2">🥇</div>
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" class="w-16 h-16 rounded-full mx-auto border-4 border-white mb-3" alt="">
+                                <h4 class="font-bold text-lg">Sarah Miller</h4>
+                                <p class="text-sm opacity-80">42 articles</p>
+                                <p class="text-2xl font-bold mt-2">$2,847</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl p-6 text-center text-gray-800">
+                                <div class="text-4xl mb-2">🥈</div>
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" class="w-16 h-16 rounded-full mx-auto border-4 border-white mb-3" alt="">
+                                <h4 class="font-bold text-lg">Mike Johnson</h4>
+                                <p class="text-sm opacity-80">38 articles</p>
+                                <p class="text-2xl font-bold mt-2">$1,923</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-6 text-center">
+                                <div class="text-4xl mb-2">🥉</div>
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" class="w-16 h-16 rounded-full mx-auto border-4 border-white mb-3" alt="">
+                                <h4 class="font-bold text-lg">Elena Rodriguez</h4>
+                                <p class="text-sm opacity-80">35 articles</p>
+                                <p class="text-2xl font-bold mt-2">$1,456</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            resources: () => `
+                <div class="max-w-6xl mx-auto px-4 py-12">
+                    <div class="text-center mb-12">
+                        <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold">🎁 100% FREE</span>
+                        <h1 class="text-4xl font-bold mt-4 mb-4">Free Resources</h1>
+                        <p class="text-gray-600 text-lg">Download guides, templates, and tools to accelerate your success</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 text-center card-hover">
+                            <div class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-file-pdf text-white text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">100 Side Hustles 2024</h3>
+                            <p class="text-gray-600 text-sm mb-4">Complete business ideas guide</p>
+                            <div class="text-purple-600 text-sm mb-4"><i class="fas fa-download mr-1"></i> 12.4K downloads</div>
+                            <button onclick="downloadResource('side-hustles')" class="w-full bg-purple-600 text-white py-3 rounded-xl font-bold hover:bg-purple-700 transition">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </button>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 text-center card-hover">
+                            <div class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-robot text-white text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">500+ ChatGPT Prompts</h3>
+                            <p class="text-gray-600 text-sm mb-4">Productivity & money-making</p>
+                            <div class="text-blue-600 text-sm mb-4"><i class="fas fa-download mr-1"></i> 18.7K downloads</div>
+                            <button onclick="downloadResource('prompts')" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </button>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 text-center card-hover">
+                            <div class="w-20 h-20 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-table text-white text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Budget Tracker</h3>
+                            <p class="text-gray-600 text-sm mb-4">Excel/Sheets template</p>
+                            <div class="text-green-600 text-sm mb-4"><i class="fas fa-download mr-1"></i> 9.2K downloads</div>
+                            <button onclick="downloadResource('budget')" class="w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </button>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-8 text-center card-hover">
+                            <div class="w-20 h-20 bg-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-check-double text-white text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Freelancer Checklist</h3>
+                            <p class="text-gray-600 text-sm mb-4">Start freelancing guide</p>
+                            <div class="text-orange-600 text-sm mb-4"><i class="fas fa-download mr-1"></i> 7.8K downloads</div>
+                            <button onclick="downloadResource('freelancer')" class="w-full bg-orange-600 text-white py-3 rounded-xl font-bold hover:bg-orange-700 transition">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            categories: () => `
+                <div class="max-w-7xl mx-auto px-4 py-12">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl font-bold mb-4">📚 All Categories</h1>
+                        <p class="text-gray-600 text-lg">Deep dive into topics that will help you earn and grow</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        ${generateCategoryCards(true)}
+                    </div>
+                </div>
+            `,
+
+            advertise: () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl font-bold mb-4">📢 Advertise With Us</h1>
+                        <p class="text-xl text-gray-600">Reach 500,000+ engaged entrepreneurs worldwide</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-8">
+                        <h2 class="text-2xl font-bold mb-6">📊 Our Audience</h2>
+                        <div class="grid md:grid-cols-4 gap-6 mb-8">
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">500K+</div>
+                                <div class="text-gray-600">Monthly Visitors</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">2.5M</div>
+                                <div class="text-gray-600">Page Views</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">180+</div>
+                                <div class="text-gray-600">Countries</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-xl">
+                                <div class="text-3xl font-bold gradient-text">4:30</div>
+                                <div class="text-gray-600">Avg. Time on Site</div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold mb-4">🎯 Audience Demographics</h3>
+                        <ul class="space-y-2 text-gray-700 mb-8">
+                            <li>• 70% aged 25-44</li>
+                            <li>• 60% from USA, UK, Canada, Australia</li>
+                            <li>• Entrepreneurs, freelancers, side hustlers</li>
+                            <li>• High purchase intent for digital products & services</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mb-4">💼 Advertising Options</h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="border-2 border-gray-200 rounded-xl p-6">
+                                <h4 class="font-bold text-lg mb-2">Banner Ads</h4>
+                                <p class="text-gray-600 text-sm mb-4">Display ads across the site</p>
+                                <p class="text-2xl font-bold gradient-text">From $500/mo</p>
+                            </div>
+                            <div class="border-2 border-purple-500 rounded-xl p-6 bg-purple-50">
+                                <h4 class="font-bold text-lg mb-2">Sponsored Posts</h4>
+                                <p class="text-gray-600 text-sm mb-4">Native content integration</p>
+                                <p class="text-2xl font-bold gradient-text">From $1,000</p>
+                            </div>
+                            <div class="border-2 border-gray-200 rounded-xl p-6">
+                                <h4 class="font-bold text-lg mb-2">Newsletter</h4>
+                                <p class="text-gray-600 text-sm mb-4">127K subscribers</p>
+                                <p class="text-2xl font-bold gradient-text">From $750</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 text-white text-center">
+                        <h2 class="text-2xl font-bold mb-4">Ready to Reach Our Audience?</h2>
+                        <p class="text-white/90 mb-6">Contact us for custom packages and media kit</p>
+                        <a href="mailto:ads@digitalpulse.io" class="inline-block bg-white text-purple-600 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition">
+                            <i class="fas fa-envelope mr-2"></i> ads@digitalpulse.io
+                        </a>
+                    </div>
+                </div>
+            `,
+
+            // ========== AFFILIATE PROGRAM PAGE ==========
+            affiliate: () => `
+                <div class="hero-gradient text-white py-16">
+                    <div class="max-w-4xl mx-auto px-4 text-center">
+                        <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">🤝 PARTNER WITH US</span>
+                        <h1 class="text-4xl lg:text-5xl font-bold mt-6 mb-4">Affiliate Program</h1>
+                        <p class="text-xl text-white/90">Earn up to 50% commission promoting products you love</p>
+                    </div>
+                </div>
+                
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <!-- Stats -->
+                    <div class="grid md:grid-cols-4 gap-6 mb-16">
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                            <div class="text-4xl font-bold gradient-text">50%</div>
+                            <div class="text-gray-600">Commission Rate</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                            <div class="text-4xl font-bold gradient-text">$125K+</div>
+                            <div class="text-gray-600">Paid to Affiliates</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                            <div class="text-4xl font-bold gradient-text">90 Days</div>
+                            <div class="text-gray-600">Cookie Duration</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                            <div class="text-4xl font-bold gradient-text">$50</div>
+                            <div class="text-gray-600">Min. Payout</div>
+                        </div>
+                    </div>
+
+                    <!-- How It Works -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-12">
+                        <h2 class="text-3xl font-bold mb-8 text-center">🚀 How It Works</h2>
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-purple-600">1</span>
+                                </div>
+                                <h3 class="font-bold mb-2">Sign Up Free</h3>
+                                <p class="text-gray-600 text-sm">Create your affiliate account in less than 2 minutes. No approval required!</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-blue-600">2</span>
+                                </div>
+                                <h3 class="font-bold mb-2">Get Your Link</h3>
+                                <p class="text-gray-600 text-sm">Receive your unique affiliate link and marketing materials.</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-green-600">3</span>
+                                </div>
+                                <h3 class="font-bold mb-2">Share & Promote</h3>
+                                <p class="text-gray-600 text-sm">Share on social media, your blog, YouTube, or email list.</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-yellow-600">4</span>
+                                </div>
+                                <h3 class="font-bold mb-2">Get Paid</h3>
+                                <p class="text-gray-600 text-sm">Earn commission for every sale. Payments via PayPal or Wise.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commission Tiers -->
+                    <div class="bg-gray-900 rounded-3xl p-8 text-white mb-12">
+                        <h2 class="text-3xl font-bold mb-8 text-center">💰 Commission Tiers</h2>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-gray-800 rounded-2xl p-6 text-center">
+                                <div class="text-3xl mb-2">🥉</div>
+                                <h3 class="text-xl font-bold mb-2">Starter</h3>
+                                <p class="text-4xl font-bold text-green-400 mb-2">30%</p>
+                                <p class="text-gray-400 text-sm">0-10 sales/month</p>
+                                <ul class="mt-4 text-sm text-left space-y-2">
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Basic marketing kit</li>
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Email support</li>
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Monthly payouts</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-6 text-center transform scale-105">
+                                <div class="text-3xl mb-2">🥈</div>
+                                <h3 class="text-xl font-bold mb-2">Pro</h3>
+                                <p class="text-4xl font-bold text-yellow-300 mb-2">40%</p>
+                                <p class="text-white/70 text-sm">11-50 sales/month</p>
+                                <ul class="mt-4 text-sm text-left space-y-2">
+                                    <li><i class="fas fa-check text-yellow-300 mr-2"></i>Premium marketing kit</li>
+                                    <li><i class="fas fa-check text-yellow-300 mr-2"></i>Priority support</li>
+                                    <li><i class="fas fa-check text-yellow-300 mr-2"></i>Bi-weekly payouts</li>
+                                    <li><i class="fas fa-check text-yellow-300 mr-2"></i>Exclusive promotions</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-800 rounded-2xl p-6 text-center">
+                                <div class="text-3xl mb-2">🥇</div>
+                                <h3 class="text-xl font-bold mb-2">Elite</h3>
+                                <p class="text-4xl font-bold text-green-400 mb-2">50%</p>
+                                <p class="text-gray-400 text-sm">50+ sales/month</p>
+                                <ul class="mt-4 text-sm text-left space-y-2">
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Custom landing pages</li>
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Dedicated manager</li>
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Weekly payouts</li>
+                                    <li><i class="fas fa-check text-green-400 mr-2"></i>Co-branded content</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Affiliates -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-12">
+                        <h2 class="text-3xl font-bold mb-8 text-center">🏆 Top Affiliates This Month</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-4">🥇</span>
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">John Marketing Pro</h4>
+                                        <p class="text-sm text-gray-600">YouTube Channel - 250K subs</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-green-600">$8,450</p>
+                                    <p class="text-sm text-gray-500">142 sales</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-4">🥈</span>
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">Sarah Finance Tips</h4>
+                                        <p class="text-sm text-gray-600">Blog - 100K monthly visitors</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-green-600">$5,230</p>
+                                    <p class="text-sm text-gray-500">87 sales</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-4">🥉</span>
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">Mike Side Hustles</h4>
+                                        <p class="text-sm text-gray-600">TikTok - 500K followers</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-green-600">$3,890</p>
+                                    <p class="text-sm text-gray-500">65 sales</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-12">
+                        <h2 class="text-3xl font-bold mb-8 text-center">❓ Frequently Asked Questions</h2>
+                        <div class="space-y-4">
+                            <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                                <summary class="font-bold">How do I get started?</summary>
+                                <p class="mt-3 text-gray-600">Simply click the "Join Now" button below, fill out a quick form, and you'll receive your affiliate link instantly. No approval process needed!</p>
+                            </details>
+                            <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                                <summary class="font-bold">When do I get paid?</summary>
+                                <p class="mt-3 text-gray-600">Payments are processed monthly for Starter affiliates, bi-weekly for Pro, and weekly for Elite. Minimum payout is $50.</p>
+                            </details>
+                            <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                                <summary class="font-bold">What products can I promote?</summary>
+                                <p class="mt-3 text-gray-600">You can promote all DigitalPulse products including courses, ebooks, premium memberships, and partner products.</p>
+                            </details>
+                            <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                                <summary class="font-bold">Do you provide marketing materials?</summary>
+                                <p class="mt-3 text-gray-600">Yes! We provide banners, email templates, social media graphics, and video scripts for all affiliates.</p>
+                            </details>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-12 text-white text-center">
+                        <h2 class="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
+                        <p class="text-xl text-white/90 mb-8">Join thousands of affiliates earning passive income with DigitalPulse</p>
+                        <button onclick="showToast('Application submitted! Check your email for next steps.')" class="bg-white text-purple-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition">
+                            <i class="fas fa-rocket mr-2"></i> Join Affiliate Program - It's Free!
+                        </button>
+                        <p class="mt-4 text-white/70 text-sm">No credit card required • Instant approval • Start earning today</p>
+                    </div>
+                </div>
+            `,
+
+            // ========== REVIEWS PAGE ==========
+            reviews: () => `
+                <div class="hero-gradient text-white py-16">
+                    <div class="max-w-4xl mx-auto px-4 text-center">
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-4">⭐ Community Reviews</h1>
+                        <p class="text-xl text-white/90">See what our community says about DigitalPulse</p>
+                        <div class="flex items-center justify-center mt-6 space-x-2">
+                            <div class="flex text-yellow-400 text-2xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-2xl font-bold">4.8/5</span>
+                            <span class="text-white/70">(2,847 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="max-w-6xl mx-auto px-4 py-12">
+                    <!-- Rating Summary -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-12">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-6">Rating Breakdown</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="w-12 text-sm">5 stars</span>
+                                        <div class="flex-1 h-4 bg-gray-200 rounded-full mx-3 overflow-hidden">
+                                            <div class="h-full bg-yellow-400 rounded-full" style="width: 78%"></div>
+                                        </div>
+                                        <span class="w-12 text-sm text-gray-600">78%</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-12 text-sm">4 stars</span>
+                                        <div class="flex-1 h-4 bg-gray-200 rounded-full mx-3 overflow-hidden">
+                                            <div class="h-full bg-yellow-400 rounded-full" style="width: 15%"></div>
+                                        </div>
+                                        <span class="w-12 text-sm text-gray-600">15%</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-12 text-sm">3 stars</span>
+                                        <div class="flex-1 h-4 bg-gray-200 rounded-full mx-3 overflow-hidden">
+                                            <div class="h-full bg-yellow-400 rounded-full" style="width: 5%"></div>
+                                        </div>
+                                        <span class="w-12 text-sm text-gray-600">5%</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-12 text-sm">2 stars</span>
+                                        <div class="flex-1 h-4 bg-gray-200 rounded-full mx-3 overflow-hidden">
+                                            <div class="h-full bg-yellow-400 rounded-full" style="width: 1%"></div>
+                                        </div>
+                                        <span class="w-12 text-sm text-gray-600">1%</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-12 text-sm">1 star</span>
+                                        <div class="flex-1 h-4 bg-gray-200 rounded-full mx-3 overflow-hidden">
+                                            <div class="h-full bg-yellow-400 rounded-full" style="width: 1%"></div>
+                                        </div>
+                                        <span class="w-12 text-sm text-gray-600">1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center flex flex-col justify-center">
+                                <div class="text-6xl font-bold gradient-text">4.8</div>
+                                <div class="flex justify-center text-yellow-400 text-xl mt-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="text-gray-600 mt-2">Based on 2,847 reviews</p>
+                                <button onclick="openReviewModal()" class="mt-4 bg-purple-600 text-white px-6 py-3 rounded-full font-bold hover:bg-purple-700 transition">
+                                    <i class="fas fa-pen mr-2"></i> Write a Review
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews List -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">Marcus Thompson</h4>
+                                        <p class="text-sm text-gray-500">Los Angeles, USA • 3 days ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="font-bold mb-2">Life-changing platform! Made my first $1000 online</h5>
+                            <p class="text-gray-600 mb-4">I was skeptical at first, but DigitalPulse delivered beyond expectations. The articles on affiliate marketing helped me set up my first successful campaign. Within 3 months, I made my first $1000 online. The community is incredibly supportive and the content is always up-to-date with the latest trends.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-purple-600"><i class="fas fa-thumbs-up mr-1"></i> Helpful (47)</button>
+                                <button class="flex items-center hover:text-purple-600"><i class="fas fa-share mr-1"></i> Share</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">Emily Rodriguez</h4>
+                                        <p class="text-sm text-gray-500">Barcelona, Spain • 1 week ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="font-bold mb-2">Best resource for AI tools and freelancing tips</h5>
+                            <p class="text-gray-600 mb-4">As a freelance designer, I was struggling to keep up with AI tools. DigitalPulse's guides on Midjourney and ChatGPT completely transformed my workflow. I've 3x my productivity and now I'm earning more while working less. The best part? I even started earning points by contributing articles!</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-purple-600"><i class="fas fa-thumbs-up mr-1"></i> Helpful (38)</button>
+                                <button class="flex items-center hover:text-purple-600"><i class="fas fa-share mr-1"></i> Share</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">James Chen</h4>
+                                        <p class="text-sm text-gray-500">Singapore • 2 weeks ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <h5 class="font-bold mb-2">Comprehensive investing guides saved me from costly mistakes</h5>
+                            <p class="text-gray-600 mb-4">Before finding DigitalPulse, I almost fell for several crypto scams. Their investing guides taught me proper due diligence and risk management. Now I have a diversified portfolio and my investments are actually growing. Thank you for the honest, no-BS approach to financial education!</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-purple-600"><i class="fas fa-thumbs-up mr-1"></i> Helpful (52)</button>
+                                <button class="flex items-center hover:text-purple-600"><i class="fas fa-share mr-1"></i> Share</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">Sarah Mitchell</h4>
+                                        <p class="text-sm text-gray-500">London, UK • 3 weeks ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="font-bold mb-2">From corporate job to successful freelancer in 6 months!</h5>
+                            <p class="text-gray-600 mb-4">I followed DigitalPulse's freelancing roadmap step by step. Set up my Upwork profile using their optimization guide, landed my first client within a week. Six months later, I quit my 9-5 and now earn 2x my previous salary while working from anywhere. This platform changed my life!</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-purple-600"><i class="fas fa-thumbs-up mr-1"></i> Helpful (89)</button>
+                                <button class="flex items-center hover:text-purple-600"><i class="fas fa-share mr-1"></i> Share</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4" alt="">
+                                    <div>
+                                        <h4 class="font-bold">David Kumar</h4>
+                                        <p class="text-sm text-gray-500">Mumbai, India • 1 month ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="font-bold mb-2">The earning feature is genius - I'm getting paid to learn!</h5>
+                            <p class="text-gray-600 mb-4">Not only am I learning valuable skills, but I'm also earning by contributing my own knowledge. Last month I made $450 just from article views! It's a win-win: I help others while building my passive income. The best educational platform I've ever used.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-purple-600"><i class="fas fa-thumbs-up mr-1"></i> Helpful (124)</button>
+                                <button class="flex items-center hover:text-purple-600"><i class="fas fa-share mr-1"></i> Share</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Load More -->
+                    <div class="text-center mt-8">
+                        <button class="bg-gray-100 hover:bg-gray-200 px-8 py-3 rounded-full font-semibold transition">
+                            Load More Reviews
+                        </button>
+                    </div>
+                </div>
+            `,
+
+            // ========== LEADERBOARD PAGE ==========
+            leaderboard: () => `
+                <div class="hero-gradient text-white py-16">
+                    <div class="max-w-4xl mx-auto px-4 text-center">
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-4">🏆 Leaderboard</h1>
+                        <p class="text-xl text-white/90">Top contributors and earners in our community</p>
+                    </div>
+                </div>
+
+                <div class="max-w-6xl mx-auto px-4 py-12">
+                    <!-- Time Filter -->
+                    <div class="flex justify-center gap-4 mb-12">
+                        <button class="px-6 py-3 bg-purple-600 text-white rounded-full font-semibold">This Month</button>
+                        <button class="px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-full font-semibold">All Time</button>
+                        <button class="px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-full font-semibold">This Week</button>
+                    </div>
+
+                    <!-- Top 3 Podium -->
+                    <div class="flex justify-center items-end gap-4 mb-16">
+                        <!-- 2nd Place -->
+                        <div class="text-center">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" class="w-20 h-20 rounded-full mx-auto border-4 border-gray-300 mb-3" alt="">
+                            <h3 class="font-bold">Mike Johnson</h3>
+                            <p class="text-sm text-gray-600">38 articles</p>
+                            <div class="bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl p-4 mt-3 h-24 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-2xl">🥈</div>
+                                    <div class="font-bold text-xl text-gray-800">$1,923</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1st Place -->
+                        <div class="text-center transform scale-110">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" class="w-24 h-24 rounded-full mx-auto border-4 border-yellow-400 mb-3" alt="">
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-crown text-white text-sm"></i>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-lg">Sarah Miller</h3>
+                            <p class="text-sm text-gray-600">42 articles</p>
+                            <div class="bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl p-4 mt-3 h-32 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="text-3xl">🥇</div>
+                                    <div class="font-bold text-2xl">$2,847</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3rd Place -->
+                        <div class="text-center">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" class="w-20 h-20 rounded-full mx-auto border-4 border-amber-600 mb-3" alt="">
+                            <h3 class="font-bold">Elena Rodriguez</h3>
+                            <p class="text-sm text-gray-600">35 articles</p>
+                            <div class="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-4 mt-3 h-20 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="text-2xl">🥉</div>
+                                    <div class="font-bold text-xl">$1,456</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full Leaderboard -->
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                        <div class="bg-gray-900 text-white px-6 py-4 grid grid-cols-12 gap-4 text-sm font-semibold">
+                            <div class="col-span-1">Rank</div>
+                            <div class="col-span-5">Contributor</div>
+                            <div class="col-span-2 text-center">Articles</div>
+                            <div class="col-span-2 text-center">Views</div>
+                            <div class="col-span-2 text-right">Earnings</div>
+                        </div>
+                        
+                        <div class="divide-y">
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold text-yellow-500">1</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Sarah Miller</h4><p class="text-xs text-gray-500">Joined Jan 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">42</div>
+                                <div class="col-span-2 text-center text-gray-600">1.2M</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$2,847</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold text-gray-400">2</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Mike Johnson</h4><p class="text-xs text-gray-500">Joined Mar 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">38</div>
+                                <div class="col-span-2 text-center text-gray-600">890K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$1,923</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold text-amber-600">3</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Elena Rodriguez</h4><p class="text-xs text-gray-500">Joined Feb 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">35</div>
+                                <div class="col-span-2 text-center text-gray-600">720K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$1,456</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">4</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Alex Chen</h4><p class="text-xs text-gray-500">Joined Jan 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">31</div>
+                                <div class="col-span-2 text-center text-gray-600">650K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$1,234</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">5</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">David Park</h4><p class="text-xs text-gray-500">Joined Apr 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">28</div>
+                                <div class="col-span-2 text-center text-gray-600">540K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$1,089</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">6</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Anna White</h4><p class="text-xs text-gray-500">Joined May 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">25</div>
+                                <div class="col-span-2 text-center text-gray-600">480K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$967</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">7</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Emily Davis</h4><p class="text-xs text-gray-500">Joined Jun 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">22</div>
+                                <div class="col-span-2 text-center text-gray-600">390K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$823</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">8</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Chris Taylor</h4><p class="text-xs text-gray-500">Joined Jul 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">19</div>
+                                <div class="col-span-2 text-center text-gray-600">320K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$678</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">9</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Rachel Green</h4><p class="text-xs text-gray-500">Joined Aug 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">17</div>
+                                <div class="col-span-2 text-center text-gray-600">280K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$545</div>
+                            </div>
+                            
+                            <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center hover:bg-gray-50">
+                                <div class="col-span-1 font-bold">10</div>
+                                <div class="col-span-5 flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=40&h=40&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3" alt="">
+                                    <div><h4 class="font-semibold">Marcus Brown</h4><p class="text-xs text-gray-500">Joined Sep 2023</p></div>
+                                </div>
+                                <div class="col-span-2 text-center font-semibold">15</div>
+                                <div class="col-span-2 text-center text-gray-600">210K</div>
+                                <div class="col-span-2 text-right font-bold text-green-600">$423</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Your Stats -->
+                    <div class="mt-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 text-white text-center">
+                        <h3 class="text-2xl font-bold mb-4">🎯 Your Stats</h3>
+                        <div class="grid md:grid-cols-4 gap-6 mb-6">
+                            <div>
+                                <div class="text-3xl font-bold" id="leaderboardPoints">0</div>
+                                <div class="text-white/70">Points</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold">0</div>
+                                <div class="text-white/70">Articles</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold">0</div>
+                                <div class="text-white/70">Views</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold">$0</div>
+                                <div class="text-white/70">Earnings</div>
+                            </div>
+                        </div>
+                        <button onclick="navigateTo('add-article')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition">
+                            <i class="fas fa-pen mr-2"></i> Start Contributing Now
+                        </button>
+                    </div>
+                </div>
+            `,
+
+            // ========== FAQ PAGE ==========
+            faq: () => `
+                <div class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="text-center mb-12">
+                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold">❓ HELP CENTER</span>
+                        <h1 class="text-4xl font-bold mt-4 mb-4">Frequently Asked Questions</h1>
+                        <p class="text-gray-600 text-lg">Everything you need to know about DigitalPulse</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- General -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <h3 class="bg-gray-900 text-white px-6 py-4 font-bold">🌐 General Questions</h3>
+                            <div class="p-2">
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">What is DigitalPulse?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">DigitalPulse is a comprehensive platform dedicated to helping people learn how to make money online, master AI tools, build side hustles, and achieve financial freedom. We offer free educational content, a community of 500,000+ entrepreneurs, and a unique system where contributors can earn money by sharing their knowledge.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">Is DigitalPulse free to use?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">Yes! DigitalPulse is 100% free to use. All our articles, guides, and resources are available at no cost. We monetize through advertising, sponsorships, and affiliate partnerships, allowing us to keep content free for our community.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">Who is behind DigitalPulse?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">DigitalPulse was founded in 2020 by a team of digital entrepreneurs who wanted to democratize financial education. Our team includes content creators, developers, and marketing experts, all passionate about helping others succeed online.</p>
+                                </details>
+                            </div>
+                        </div>
+
+                        <!-- Earning -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <h3 class="bg-green-600 text-white px-6 py-4 font-bold">💰 Earning Money</h3>
+                            <div class="p-2">
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">How can I earn money on DigitalPulse?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">There are multiple ways to earn: 1) Write articles and earn $5-$50 per 1,000 views, 2) Refer new users and earn $1-$10 per signup, 3) Leave helpful reviews and earn points convertible to cash, 4) Win monthly prizes up to $500 for top contributors.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">When do I get paid?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">Payments are processed monthly via PayPal or Wise. You need a minimum balance of $50 to request a payout. Most contributors receive their payments within 5-7 business days after the month ends.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">How much can I realistically earn?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">Earnings vary based on content quality and consistency. Our top contributors earn $500-$3,000 per month. Beginners typically earn $50-$200 in their first month. The more valuable content you create, the more you earn!</p>
+                                </details>
+                            </div>
+                        </div>
+
+                        <!-- Writing -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <h3 class="bg-blue-600 text-white px-6 py-4 font-bold">✍️ Writing Articles</h3>
+                            <div class="p-2">
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">What type of articles can I write?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">We accept articles in 6 main categories: Make Money Online, AI & Technology, Side Hustles, Freelancing, Investing, and Productivity. Articles should be informative, actionable, and at least 800 words.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">How long does review take?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">We review all submissions within 24-48 hours. You'll receive an email notification when your article is approved, or feedback if revisions are needed. Most quality articles are approved on the first submission.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">Can I include affiliate links?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">Yes, you can include relevant affiliate links in your articles. However, they must be disclosed and add value to the reader. We review all links for quality and relevance.</p>
+                                </details>
+                            </div>
+                        </div>
+
+                        <!-- Affiliate -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <h3 class="bg-purple-600 text-white px-6 py-4 font-bold">🤝 Affiliate Program</h3>
+                            <div class="p-2">
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">How do I join the affiliate program?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">Simply visit our Affiliate Program page and click "Join Now". Approval is instant and free. You'll receive your unique affiliate link immediately and can start promoting right away.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">What's the commission structure?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">We offer tiered commissions: Starter (30%), Pro (40%), and Elite (50%). Your tier is based on monthly sales volume. Cookie duration is 90 days, so you earn on delayed purchases too!</p>
+                                </details>
+                            </div>
+                        </div>
+
+                        <!-- Technical -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <h3 class="bg-gray-600 text-white px-6 py-4 font-bold">⚙️ Technical Support</h3>
+                            <div class="p-2">
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">I found a bug. How do I report it?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">Please use our Report Issue page to submit bug reports. Include as much detail as possible: what you were doing, what browser you're using, and screenshots if possible. We typically fix issues within 24-48 hours.</p>
+                                </details>
+                                <details class="border-b border-gray-100">
+                                    <summary class="px-4 py-4 cursor-pointer font-semibold hover:bg-gray-50">How do I delete my account?</summary>
+                                    <p class="px-4 pb-4 text-gray-600">You can request account deletion by emailing privacy@digitalpulse.io. We'll process your request within 30 days and delete all personal data in accordance with GDPR regulations.</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Still Have Questions -->
+                    <div class="mt-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 text-white text-center">
+                        <h3 class="text-2xl font-bold mb-4">Still Have Questions?</h3>
+                        <p class="text-white/90 mb-6">Our support team is here to help you succeed!</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onclick="navigateTo('contact')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition">
+                                <i class="fas fa-envelope mr-2"></i> Contact Support
+                            </button>
+                            <a href="mailto:hello@digitalpulse.io" class="border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-purple-600 transition">
+                                <i class="fas fa-paper-plane mr-2"></i> Email Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        // Category pages
+        const categoryData = {
+            'category-money': { name: '💰 Make Money Online', color: 'green', filter: 'money' },
+            'category-ai': { name: '🤖 AI & Technology', color: 'blue', filter: 'ai' },
+            'category-sidehustle': { name: '🚀 Side Hustles', color: 'purple', filter: 'sidehustle' },
+            'category-freelancing': { name: '💻 Freelancing', color: 'teal', filter: 'freelancing' },
+            'category-investing': { name: '📈 Investing', color: 'amber', filter: 'investing' },
+            'category-productivity': { name: '🧠 Productivity', color: 'rose', filter: 'productivity' }
+        };
+
+        Object.keys(categoryData).forEach(key => {
+            pages[key] = () => {
+                const cat = categoryData[key];
+                const articles = articlesDB.filter(a => a.category === cat.filter);
+                return `
+                    <div class="bg-${cat.color}-600 text-white py-16">
+                        <div class="max-w-4xl mx-auto px-4 text-center">
+                            <h1 class="text-4xl font-bold mb-4">${cat.name}</h1>
+                            <p class="text-xl text-white/90">${articles.length} articles to help you succeed</p>
+                        </div>
+                    </div>
+                    <div class="max-w-7xl mx-auto px-4 py-12">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${articles.map(article => generateArticleCard(article)).join('')}
+                        </div>
+                    </div>
+                `;
+            };
+        });
+
+        // Article page
+        pages['article'] = (id) => {
+            const article = articlesDB.find(a => a.id === parseInt(id));
+            if (!article) return '<div class="text-center py-20"><h1 class="text-2xl">Article not found</h1></div>';
+            
+            return `
+                <article class="max-w-4xl mx-auto px-4 py-12">
+                    <div class="mb-8">
+                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">${article.emoji} ${article.category.toUpperCase()}</span>
+                        <h1 class="text-3xl lg:text-4xl font-bold mt-4 mb-4">${article.title}</h1>
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <img src="${article.authorImg}" class="w-12 h-12 rounded-full" alt="${article.author}">
+                            <div>
+                                <p class="font-semibold text-gray-900">${article.author}</p>
+                                <p class="text-sm">${article.date} • ${article.readTime} min read • ${(article.views/1000).toFixed(0)}K views</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Share Buttons -->
+                    <div class="flex items-center space-x-3 mb-8 pb-8 border-b">
+                        <span class="text-gray-600 font-medium">Share:</span>
+                        <button onclick="shareArticle('twitter')" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition"><i class="fab fa-twitter"></i></button>
+                        <button onclick="shareArticle('facebook')" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition"><i class="fab fa-facebook-f"></i></button>
+                        <button onclick="shareArticle('linkedin')" class="w-10 h-10 bg-blue-800 text-white rounded-full flex items-center justify-center hover:bg-blue-900 transition"><i class="fab fa-linkedin-in"></i></button>
+                        <button onclick="shareArticle('whatsapp')" class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition"><i class="fab fa-whatsapp"></i></button>
+                        <button onclick="copyLink()" class="w-10 h-10 bg-gray-600 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition"><i class="fas fa-link"></i></button>
+                    </div>
+                    
+                    <div class="prose prose-lg max-w-none">
+                        ${article.content}
+                    </div>
+                    
+                    <!-- Author Box -->
+                    <div class="mt-12 p-8 bg-gray-50 rounded-2xl">
+                        <div class="flex items-start space-x-4">
+                            <img src="${article.authorImg}" class="w-20 h-20 rounded-full" alt="${article.author}">
+                            <div>
+                                <h3 class="font-bold text-xl">${article.author}</h3>
+                                <p class="text-gray-600 mb-4">Top contributor on DigitalPulse with expertise in ${article.category}.</p>
+                                <button class="bg-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-purple-700 transition">Follow</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `;
+        };
+
+        // ==================== HELPER FUNCTIONS ====================
+        function generateCategoryCards(full = false) {
+            const categories = [
+                { id: 'category-money', name: '💰 Make Money Online', color: 'green', desc: 'Proven strategies to generate income online', count: articlesDB.filter(a => a.category === 'money').length },
+                { id: 'category-ai', name: '🤖 AI & Technology', color: 'blue', desc: 'Master AI tools and emerging tech', count: articlesDB.filter(a => a.category === 'ai').length },
+                { id: 'category-sidehustle', name: '🚀 Side Hustles', color: 'purple', desc: 'Start earning extra income today', count: articlesDB.filter(a => a.category === 'sidehustle').length },
+                { id: 'category-freelancing', name: '💻 Freelancing', color: 'teal', desc: 'Build a successful freelance career', count: articlesDB.filter(a => a.category === 'freelancing').length },
+                { id: 'category-investing', name: '📈 Investing', color: 'amber', desc: 'Grow your wealth with smart strategies', count: articlesDB.filter(a => a.category === 'investing').length },
+                { id: 'category-productivity', name: '🧠 Productivity', color: 'rose', desc: 'Master your time and achieve more', count: articlesDB.filter(a => a.category === 'productivity').length }
+            ];
+
+            return categories.map(cat => `
+                <a href="#" onclick="navigateTo('${cat.id}')" class="block bg-gradient-to-br from-${cat.color}-500 to-${cat.color}-600 rounded-3xl p-8 text-white card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">${cat.name}</h3>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm">${cat.count} articles</span>
+                    </div>
+                    <p class="text-white/80 mb-6">${cat.desc}</p>
+                    <span class="inline-flex items-center font-semibold">
+                        Explore <i class="fas fa-arrow-right ml-2"></i>
+                    </span>
+                </a>
+            `).join('');
+        }
+
+        function generateArticleCard(article) {
+            return `
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover cursor-pointer" onclick="navigateTo('article', ${article.id})">
+                    <img src="https://images.unsplash.com/photo-${1550000000000 + article.id * 1000}?w=600&h=300&fit=crop" 
+                        class="w-full h-48 object-cover" alt="${article.title}"
+                        onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop'">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-purple-600 text-sm font-semibold">${article.emoji} ${article.category.toUpperCase()}</span>
+                            <span class="text-gray-500 text-sm">${article.readTime} min</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-3 line-clamp-2 hover:text-purple-600 transition">${article.title}</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">${article.summary}</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="${article.authorImg}" class="w-8 h-8 rounded-full" alt="${article.author}">
+                                <span class="ml-2 text-sm text-gray-600">${article.author}</span>
+                            </div>
+                            <span class="text-gray-500 text-sm"><i class="fas fa-eye mr-1"></i> ${(article.views/1000).toFixed(0)}K</span>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        // ==================== NAVIGATION ====================
+        function navigateTo(page, param = null) {
+            window.scrollTo(0, 0);
+            document.getElementById('mobileMenu').classList.add('hidden');
+            
+            if (page === 'article' && param) {
+                document.getElementById('pageContent').innerHTML = pages['article'](param);
+            } else if (pages[page]) {
+                document.getElementById('pageContent').innerHTML = pages[page]();
+            } else {
+                document.getElementById('pageContent').innerHTML = `<div class="text-center py-20"><h1 class="text-3xl font-bold">Page: ${page}</h1><p class="text-gray-600 mt-4">Coming soon...</p></div>`;
+            }
+            
+            // Update URL without reload
+            history.pushState({ page, param }, '', `#${page}${param ? '/' + param : ''}`);
+        }
+
+        // ==================== ADMIN PANEL ====================
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('-translate-x-full');
+        }
+
+        function updateSiteName() {
+            const name = document.getElementById('siteName').value;
+            document.getElementById('siteNameDisplay').textContent = name.split(/(?=[A-Z])/).shift() || name;
+            document.getElementById('siteNameDisplay2').textContent = name.split(/(?=[A-Z])/).pop() || '';
+            showToast('Site name updated!');
+        }
+
+        function updateLogo() {
+            const icon = document.getElementById('logoIcon').value;
+            document.getElementById('logoIconDisplay').className = `fas ${icon} text-white text-xl`;
+            showToast('Logo updated!');
+        }
+
+        function changeTheme(color) {
+            showToast(`Theme changed to ${color}!`);
+        }
+
+        // ==================== UI FUNCTIONS ====================
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function openSearch() {
+            document.getElementById('searchModal').classList.remove('hidden');
+            document.getElementById('searchInput').focus();
+        }
+
+        function closeSearch() {
+            document.getElementById('searchModal').classList.add('hidden');
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const results = articlesDB.filter(a => 
+                a.title.toLowerCase().includes(query) || 
+                a.summary.toLowerCase().includes(query)
+            ).slice(0, 5);
+
+            document.getElementById('searchResults').innerHTML = results.length ? results.map(a => `
+                <div class="p-4 hover:bg-gray-50 cursor-pointer border-b" onclick="navigateTo('article', ${a.id}); closeSearch();">
+                    <h4 class="font-semibold">${a.title}</h4>
+                    <p class="text-sm text-gray-600">${a.summary.substring(0, 100)}...</p>
+                </div>
+            `).join('') : '<p class="p-4 text-gray-500">No results found</p>';
+        }
+
+        function filterArticles(category) {
+            const filtered = category === 'all' ? articlesDB : articlesDB.filter(a => a.category === category);
+            document.getElementById('articlesGrid').innerHTML = filtered.map(a => generateArticleCard(a)).join('');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        function showPoints() {
+            showToast(`You have ${userData.points} points!`);
+        }
+
+        function addPoints(amount) {
+            userData.points += amount;
+            document.getElementById('userPoints').textContent = userData.points;
+            localStorage.setItem('userData', JSON.stringify(userData));
+        }
+
+        // ==================== FORM HANDLERS ====================
+        function submitArticle(event) {
+            event.preventDefault();
+            addPoints(500);
+            showToast('Article submitted! +500 points! We\'ll review it within 24h');
+            navigateTo('home');
+        }
+
+        function submitContact(event) {
+            event.preventDefault();
+            showToast('Message sent! We\'ll respond within 24-48 hours.');
+        }
+
+        function submitReport(event) {
+            event.preventDefault();
+            showToast('Report submitted. Thank you for helping us improve!');
+            navigateTo('home');
+        }
+
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            addPoints(100);
+            showToast('Welcome! +100 points! Check your email.');
+        }
+
+        function downloadResource(name) {
+            addPoints(25);
+            showToast(`Download started! +25 points!`);
+        }
+
+        function copyReferralLink() {
+            navigator.clipboard.writeText(window.location.href + '?ref=' + Math.random().toString(36).substr(2, 8));
+            showToast('Referral link copied!');
+        }
+
+        function shareArticle(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const urls = {
+                twitter: `https://twitter.com/intent/tweet?url=${url}`,
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+                linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+                whatsapp: `https://wa.me/?text=${url}`
+            };
+            window.open(urls[platform], '_blank');
+            addPoints(10);
+            showToast('+10 points for sharing!');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            addPoints(5);
+            showToast('Link copied! +5 points');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Scroll handling
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                btn.classList.remove('opacity-0', 'invisible');
+            } else {
+                btn.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', (e) => {
+            if (e.state) {
+                navigateTo(e.state.page, e.state.param);
+            }
+        });
+
+        // ==================== ADMIN AUTHENTICATION ====================
+        const ADMIN_CREDENTIALS = {
+            username: 'Admin',
+            password: 'neverback2026'
+        };
+
+        let isAdminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+
+        // Check admin status on load
+        function checkAdminStatus() {
+            if (isAdminLoggedIn) {
+                document.getElementById('adminToggle').classList.remove('hidden');
+            }
+        }
+
+        // Triple click on logo to open admin login
+        function setupLogoClick() {
+            const logo = document.querySelector('nav a[onclick="navigateTo(\'home\')"]');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    logoClickCount++;
+                    
+                    if (logoClickTimer) clearTimeout(logoClickTimer);
+                    
+                    logoClickTimer = setTimeout(() => {
+                        logoClickCount = 0;
+                    }, 500);
+                    
+                    if (logoClickCount >= 3) {
+                        e.preventDefault();
+                        logoClickCount = 0;
+                        if (!isAdminLoggedIn) {
+                            openAdminLogin();
+                        } else {
+                            toggleAdminPanel();
+                        }
+                    }
+                });
+            }
+        }
+
+        function openAdminLogin() {
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+            document.getElementById('adminUsername').focus();
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').classList.add('hidden');
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('adminPassword');
+            const icon = document.getElementById('passwordToggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                isAdminLoggedIn = true;
+                localStorage.setItem('adminLoggedIn', 'true');
+                
+                document.getElementById('adminToggle').classList.remove('hidden');
+                closeAdminLogin();
+                
+                showToast('🎉 Welcome back, Founder! Admin access granted.');
+                toggleAdminPanel();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        function adminLogout() {
+            isAdminLoggedIn = false;
+            localStorage.removeItem('adminLoggedIn');
+            document.getElementById('adminToggle').classList.add('hidden');
+            toggleAdminPanel();
+            showToast('Logged out successfully.');
+        }
+
+        // Initialize
+        document.getElementById('userPoints').textContent = userData.points;
+        checkAdminStatus();
+        navigateTo('home');
+        
+        // Setup logo click after page loads
+        setTimeout(setupLogoClick, 100);
+    </script>
+</body>
+</html>
